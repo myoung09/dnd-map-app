@@ -6,7 +6,12 @@ const LoadButton = ({ handleStateLoad }) => {
     const fileUploadRef = useRef();
 
     const handleClick = () => {
-        fileUploadRef.current.click();
+        const localStorageData = localStorage.getItem('DandDSession');
+        if (localStorageData) {
+            handleStateLoad(JSON.parse(localStorageData));
+        } else {
+            fileUploadRef.current.click();
+        }
     };
 
     const handleFileChange = (event) => {

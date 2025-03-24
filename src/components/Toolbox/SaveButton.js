@@ -5,6 +5,7 @@ const SaveButton = ({getState, filename}) => {
     const downloadJSON = () => {
         const data = getState();
         const jsonData = new Blob([JSON.stringify(data)], { type: 'application/json' });
+        localStorage.setItem('DandDSession', JSON.stringify(data));
         const jsonURL = URL.createObjectURL(jsonData);
         const link = document.createElement('a');
         link.href = jsonURL;
