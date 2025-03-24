@@ -9,15 +9,15 @@ const PhotoLibraries = ({onOpen, enabled, width, height, libraries, onChange}) =
     useEffect(() => {
         if (librariesRef.current) {
             const current = librariesRef.current.getStage().container();
-            current.addEventListener('keypress', handleDeleteSelected);
+            current.addEventListener('keydown', handleDeleteSelected);
             return () => {
-                current.removeEventListener('keypress', handleDeleteSelected);
+                current.removeEventListener('keydown', handleDeleteSelected);
             }
         }
     }, [selected]);
 
     const handleDeleteSelected = (e) => {
-        if (e.key === 'd' && selected != null) {
+        if (e.key === 'Delete' && selected != null) {
             let newlibraries = [...libraries];
             newlibraries = newlibraries.filter((library, i) => {
                 return (i !== selected);

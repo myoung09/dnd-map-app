@@ -10,9 +10,9 @@ const Effects = ({enabled, width, height, color, effects, onChange}) => {
     useEffect(() => {
         if (effectsRef.current) {
             const currentEffect = effectsRef.current.getStage().container();
-            currentEffect.addEventListener('keypress', handleDeleteSelectedEffect);
+            currentEffect.addEventListener('keydown', handleDeleteSelectedEffect);
             return () => {
-                currentEffect.removeEventListener('keypress', handleDeleteSelectedEffect);
+                currentEffect.removeEventListener('keydown', handleDeleteSelectedEffect);
             }
         }
     }, [selectedEffect]);
@@ -35,7 +35,7 @@ const Effects = ({enabled, width, height, color, effects, onChange}) => {
 
 
     const handleDeleteSelectedEffect = (e) => {
-        if (e.key === 'd' && selectedEffect != null) {
+        if (e.key === 'Delete' && selectedEffect != null) {
             let neweffects = [...effects];
             neweffects = neweffects.filter((effect, i) => {
                 return (i !== selectedEffect);

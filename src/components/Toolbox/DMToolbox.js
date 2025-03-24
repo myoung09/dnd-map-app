@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import MapSelector from './MapSelector';
-import { AppBar, Box, ToggleButtonGroup, ToggleButton, Button } from '@mui/material';
+import { AppBar, Box, ToggleButtonGroup, ToggleButton, Button, TextField } from '@mui/material';
 import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 import StreetviewIcon from '@mui/icons-material/Streetview';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -69,8 +69,8 @@ const DMToolbox = ({
             <Box position="fixed" sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
                 <ConnectionStatus connectionStatus={connectionStatus} />
                 <ToggleButtonGroup orientation="horizontal" size="large" aria-label="Small sizes" sx={{ flexWrap: "wrap" }}>
-                    <MapSelector icon={<MapIcon />}onMapChange={handleDMMapChange} />
-                    <MapSelector icon={<PanoramaPhotosphereIcon />} onMapChange={handlePlayerMapChange} />
+                    <MapSelector icon={<MapIcon />}onMapChange={handleDMMapChange} helperText="Add a Map to DM screen" />
+                    <MapSelector icon={<PanoramaPhotosphereIcon />} onMapChange={handlePlayerMapChange} helperText="Add a Map to Player screen"/>
                 </ToggleButtonGroup>
                 <Button variant="outlined" onClick={handleBattleTracker} aria-label="Show battle tracker" sx={{ flexWrap: "wrap" }}>
                     <SportsKabaddiIcon />
@@ -93,8 +93,19 @@ const DMToolbox = ({
                     </ToggleButton>
                 </ToggleButtonGroup>
                 <EffectColorPicker color={selectedEffectColor} onColorChange={handleEffectColorChange} />
-                <input id={'DMViewScale'} type="number" value={dmViewScale} min={0.1} max={5} step={0.1} onChange={dmViewScaleChangeHandler} />
-                <input id={'PlayerViewScale'} type="number" value={playerViewScale} min={0.1} max={5} step={0.1} onChange={playerViewScaleChangeHandler} />
+                <TextField id={'DMViewScale'} type="number" value={dmViewScale} inputProps={{
+                    step: 0.1,
+                    min: 0.1,
+                    max: 5,
+                    type: 'number',
+                }}onChange={dmViewScaleChangeHandler} />
+                <TextField id={'PlayerViewScale'} type="number" value={playerViewScale} inputProps={{
+                    step: 0.1,
+                    min: 0.1,
+                    max: 5,
+                    type: 'number',
+                }}
+                onChange={playerViewScaleChangeHandler} />
                 <SaveButton getState={getState} filename="session" />
                 <LoadButton handleStateLoad={handleLoad} />
             </Box>
