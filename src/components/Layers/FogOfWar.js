@@ -9,7 +9,7 @@ const FogOfWar = ({opacity, height, width, revealEnabled, reveals, onRevealsChan
     const [selectedReveal, setSelectedReveal] = useState(null);
 
     const handleDeleteSelectedReveal = (e) => {
-        if (e.key === 'd' && selectedReveal != null) {
+        if (e.key === 'Delete' && selectedReveal != null) {
             let newReveals = [...reveals];
             newReveals = newReveals.filter((reveal, i) => {
                 return (i !== selectedReveal);
@@ -22,9 +22,9 @@ const FogOfWar = ({opacity, height, width, revealEnabled, reveals, onRevealsChan
     useEffect(() => {
         if (fog.current) {
             const currentFog = fog.current.getStage().container();
-            currentFog.addEventListener('keypress', handleDeleteSelectedReveal);
+            currentFog.addEventListener('keydown', handleDeleteSelectedReveal);
             return () => {
-                currentFog.removeEventListener('keypress', handleDeleteSelectedReveal);
+                currentFog.removeEventListener('keydown', handleDeleteSelectedReveal);
             }
         }
     }, [selectedReveal]);

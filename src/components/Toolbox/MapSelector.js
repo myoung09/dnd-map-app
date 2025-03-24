@@ -1,9 +1,9 @@
 import React, { Fragment, useRef } from "react";
 import { useState } from "react";
 
-import { Input, ToggleButton } from '@mui/material';
+import { Input, ToggleButton, Tooltip } from '@mui/material';
 
-const MapSelector = ({icon, onMapChange}) => {
+const MapSelector = ({icon, onMapChange, helperText}) => {
     const fileUploadRef = useRef();
 
     const handleClick = () => {
@@ -23,10 +23,12 @@ const MapSelector = ({icon, onMapChange}) => {
     };
 
     return (
-        <ToggleButton value="changeMap" key="changeMap" onClick={handleClick}>
+        <Tooltip title={helperText}>
+            <ToggleButton value="changeMap" key="changeMap" onClick={handleClick}>
             {icon}
             <input ref={fileUploadRef} hidden={true} type="file" onChange={handleFileChange} />
         </ToggleButton>
+        </Tooltip>
     );
 };
 
