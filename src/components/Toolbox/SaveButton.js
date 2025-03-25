@@ -1,7 +1,7 @@
 import { Save } from "@mui/icons-material";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
-const SaveButton = ({getState, filename}) => {
+const SaveButton = ({ getState, filename }) => {
     const downloadJSON = () => {
         const data = getState();
         const jsonData = new Blob([JSON.stringify(data)], { type: 'application/json' });
@@ -14,9 +14,15 @@ const SaveButton = ({getState, filename}) => {
         link.click();
         document.body.removeChild(link);
     };
-    
+
     return (
-        <Button variant="contained" color="primary" onClick={downloadJSON}><Save /></Button>
+        <Button variant="contained" color="primary" onClick={downloadJSON}>
+            <Box display="flex" flexDirection="column" alignItems="center">
+            <Typography>
+                Save
+            </Typography>
+                <Save />
+            </Box></Button>
     );
 };
 

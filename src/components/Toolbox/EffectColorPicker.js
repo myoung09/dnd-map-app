@@ -31,7 +31,7 @@ const CoverDIV = styled.div`
     left: 0px;
 `;
 
-const EffectColorPicker = ({color, onColorChange}) => {
+const EffectColorPicker = ({ color, onColorChange }) => {
     const [displayPicker, setDisplayPicker] = useState(false);
 
     const handleClick = () => {
@@ -41,22 +41,24 @@ const EffectColorPicker = ({color, onColorChange}) => {
     const handleClose = () => {
         setDisplayPicker(false);
     };
-    
+
     const handleChange = (newcolor) => {
-        onColorChange(newcolor.rgb);
+        if (onColorChange) {
+            onColorChange(newcolor.rgb);
+        }
     };
-    
+
     return (
         <div>
             <SwatchDIV onClick={handleClick}>
                 <ColorDIV $color={color} />
             </SwatchDIV>
-            { displayPicker ? 
+            {displayPicker ?
                 <PopoverDIV>
                     <CoverDIV onClick={handleClose} />
                     <SketchPicker color={color} onChange={handleChange} />
-                </PopoverDIV> 
-            : null }
+                </PopoverDIV>
+                : null}
         </div>
     );
 };

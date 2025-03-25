@@ -1,6 +1,6 @@
 import UploadIcon from '@mui/icons-material/Upload';
 import { useRef } from 'react';
-import { Button } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 const LoadButton = ({ handleStateLoad }) => {
     const fileUploadRef = useRef();
@@ -28,8 +28,11 @@ const LoadButton = ({ handleStateLoad }) => {
 
     return (
         <Button variant="contained" color="error" onClick={handleClick}>
-            <UploadIcon />
-            <input ref={fileUploadRef} hidden={true} type="file" onChange={handleFileChange} />
+            <Box display="flex" flexDirection="column" alignItems="center">
+                <Typography>Load</Typography>
+                <UploadIcon />
+                <input ref={fileUploadRef} hidden={true} type="file" onChange={handleFileChange} />
+            </Box>
         </Button>
     );
 };
