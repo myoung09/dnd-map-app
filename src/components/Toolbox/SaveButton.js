@@ -18,9 +18,9 @@ const SaveButton = ({ getState, filename }) => {
     return (
         <Button variant="contained" color="primary" onClick={downloadJSON}>
             <Box display="flex" flexDirection="column" alignItems="center">
-            <Typography>
-                Save
-            </Typography>
+                <Typography>
+                    Save
+                </Typography>
                 <Save />
             </Box></Button>
     );

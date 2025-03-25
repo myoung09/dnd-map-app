@@ -23,7 +23,7 @@ const MapSelector = ({ icon, onMapChange, helperText }) => {
 
     return (
         <Tooltip title={helperText}>
-            <ToggleButton value="changeMap" key="changeMap" onClick={handleClick}>
+            <ToggleButton value="changeMap" onClick={handleClick}>
                 <Box display="flex" flexDirection="column" alignItems="center">
                     <Typography variant="subtitle1">Change Map</Typography>
                     {icon}

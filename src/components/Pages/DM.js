@@ -108,6 +108,7 @@ const DM = () => {
   };
 
   const handleEffectColorChange = (color) => {
+    console.log(color);
     setSelectedEffectColor(color);
   }
 
@@ -303,6 +304,19 @@ const DM = () => {
     setCurrentEncounter(encounter);
     playerEncounterUpdate(encounter);
   };
+
+  const handleLocalSave = () => {
+    console.log(selectedDMMap, selectedPlayerMap, fogOfWarReveals);
+    const state = generateState();
+    console.log(state);
+    localStorage.setItem('DandDSession', JSON.stringify(state));
+  };
+
+  useEffect(() => {
+    if (selectedDMMap && selectedPlayerMap && fogOfWarReveals && playerViewDimensions && dmViewScale && playerViewScale && effects && photoLibraries) {
+      handleLocalSave();
+    }
+  }, [selectedDMMap, selectedPlayerMap, fogOfWarReveals, playerViewDimensions, dmViewScale, playerViewScale, effects, photoLibraries]);
 
   return (
     <Fragment>

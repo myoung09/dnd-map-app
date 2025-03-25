@@ -17,7 +17,7 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const PhotoLibraryDialog = ({onClose, open, library, onImageChange, onImageShow}) => {
+const PhotoLibraryDialog = ({ onClose, open, library, onImageChange, onImageShow }) => {
     const readFileContents = async (file) => {
         return new Promise((resolve, reject) => {
             let fileReader = new FileReader();
@@ -60,8 +60,8 @@ const PhotoLibraryDialog = ({onClose, open, library, onImageChange, onImageShow}
                 variant="contained"
                 tabIndex={-1}
                 startIcon={<CloudUploadIcon />}
-                >
-            Upload image
+            >
+                Upload image
                 <VisuallyHiddenInput type="file" multiple={true} onChange={handleFileChange} />
             </Button>
             {library && <ImageList variant="masonry" cols={3} gap={8}>
@@ -69,9 +69,10 @@ const PhotoLibraryDialog = ({onClose, open, library, onImageChange, onImageShow}
                     <ImageListItem key={i}>
                         <img
                             src={item}
+                            alt=""
                         />
-                        <Button variant="contained" color="secondary" onClick={() => {onImageShow(i);}}><VisibilityIcon /></Button>
-                        <Button variant="contained" color="error" onClick={() => {handleDeleteImage(i);}}><DeleteIcon /></Button>
+                        <Button variant="contained" color="secondary" onClick={() => { onImageShow(i); }}><VisibilityIcon /></Button>
+                        <Button variant="contained" color="error" onClick={() => { handleDeleteImage(i); }}><DeleteIcon /></Button>
                     </ImageListItem>
                 ))}
             </ImageList>

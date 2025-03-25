@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import MapSelector from './MapSelector';
-import { Box, ToggleButtonGroup, TextField, InputLabel, Typography } from '@mui/material';
+import { Box, ToggleButtonGroup, TextField, InputLabel, Typography, Button, ToggleButton } from '@mui/material';
 import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import FlareIcon from '@mui/icons-material/Flare';
@@ -67,7 +67,7 @@ const DMToolbox = ({
 
     return (
         <Drawer variant="permanent" anchor="left">
-            <Grid container direction="column" spacing={4} p={5} justifyContent={"space-between"} alignItems={"space-between"} flexGrow={1}>
+            <Grid container direction="column" p={4} justifyContent={"space-between"} alignItems={"space-between"} flexGrow={1}>
                 <ToggleButtonGroup value={selectedTool}>
                     <Grid item container direction="column" spacing={4} justifyContent={"center"} alignItems={"center"}>
                         <Grid item>
@@ -90,8 +90,8 @@ const DMToolbox = ({
                                     }}
                                     onChange={dmViewScaleChangeHandler}
                                 />
-                                <LabeledToggleButton value="mapMove" key="mapMove" onClick={handleMapMove} icon={<ControlCameraIcon />} label="Move" />
-                                <LabeledToggleButton value="fogReveal" key="fogReveal" onClick={handleFogOfWarReveal} icon={<VisibilityIcon />} label="Reveal" />
+                                <LabeledToggleButton value="mapMove" onClick={handleMapMove} icon={<ControlCameraIcon />} label="Move" />
+                                <LabeledToggleButton value="fogReveal" onClick={handleFogOfWarReveal} icon={<VisibilityIcon />} label="Reveal" />
                             </Grid>
                         </Grid>
                         <Grid item container direction="column" spacing={2} justifyContent={"center"} alignItems={"center"}>
@@ -111,40 +111,40 @@ const DMToolbox = ({
                                     }}
                                     onChange={playerViewScaleChangeHandler}
                                 />
-                                <LabeledToggleButton value="playerView" key="playerView" onClick={handlePlayerView} icon={<ControlCameraIcon />} label="Move" />
+                                <LabeledToggleButton value="playerView" onClick={handlePlayerView} icon={<ControlCameraIcon />} label="Move" />
                             </Grid>
                         </Grid>
-                        {/* <Grid item>
+                        <Grid item>
                     <InputLabel>Battle Tracker</InputLabel>
                     <Button variant="outlined" onClick={handleBattleTracker} aria-label="Show battle tracker" sx={{ flexWrap: "wrap" }}>
-                        <SportsKabaddiIcon />
+                        <Typography variant="subtitle1">Battle Tracker</Typography>
                     </Button>
-                </Grid> */}
+                </Grid>
                         <Grid item container direction="column" spacing={2} justifyContent={"center"} alignItems={"center"}>
                             <InputLabel>Map Effects</InputLabel>
                             <Grid item container spacing={2} gap={2} justifyContent={"center"} alignItems={"center"}>
                                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', border: 1, borderColor: 'grey.800', padding: 1 }}>
                                     <Typography variant="subtitle1">Effect Color</Typography>
-                                    <EffectColorPicker color={selectedEffectColor} handleColorChange={handleEffectColorChange} />
+                                    <EffectColorPicker color={selectedEffectColor} onColorChange={handleEffectColorChange} />
                                 </Box>
-                                <LabeledToggleButton value="areaEffect" key="areaEffect" onClick={handleEffects} icon={<FlareIcon />} label="Draw" />
+                                <LabeledToggleButton value="areaEffect" onClick={handleEffects} icon={<FlareIcon />} label="Draw" />
                             </Grid>
                         </Grid>
-                        {/* <Grid item container direction="column" spacing={2} justifyContent={"center"} alignItems={"center"}>
+                        <Grid item container direction="column" spacing={2} justifyContent={"center"} alignItems={"center"}>
                     <InputLabel>Photo Libraries</InputLabel>
                     <Grid item container spacing={2} justifyContent={"center"} alignItems={"center"}>
-                        <ToggleButton value="photoLibraries" key="photoLibraries" onClick={handlePhotoLibraries}>
+                    <ToggleButton value="photoLibraries" onClick={handlePhotoLibraries}>
                             <PhotoLibrary />
                         </ToggleButton>
                     </Grid>
-                </Grid> */}
+                </Grid>
                     </Grid>
                 </ToggleButtonGroup>
                 <Grid item container direction="column" spacing={2} justifyContent={"center"} alignItems={"center"}>
                     <InputLabel>Save/Load</InputLabel>
                     <Grid item container spacing={2} gap={2} justifyContent={"center"} alignItems={"center"}>
-                        <SaveButton getState={getState} />
-                        <LoadButton handleLoad={handleLoad} />
+                        <SaveButton getState={getState} filename="session"/>
+                        <LoadButton handleStateLoad={handleLoad} />
                         <CompleteSessionButton />
                     </Grid>
                 </Grid>
